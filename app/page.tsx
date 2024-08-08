@@ -4,8 +4,6 @@ import { Button } from "./_components/ui/button"
 import { Input } from "./_components/ui/input"
 import Image from "next/image"
 import { Card, CardContent } from "./_components/ui/card"
-import { Badge } from "./_components/ui/badge"
-import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
 import { BabershopItem } from "./_components/babershop-item"
 import { quickSearchOptions } from "./_constants/search"
@@ -51,7 +49,7 @@ const Home = async () => {
             className="rounded-xl"
             src="/Banner pizza.png"
             alt="banner-01"
-            layout="fill"
+            fill
             objectFit="cover"
           />
         </div>
