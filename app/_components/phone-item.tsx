@@ -8,25 +8,29 @@ interface PhoneItemProps {
   phone: string
 }
 
-const handleCopyPhoneClick = (phone: string) => {
-  navigator.clipboard.writeText(phone)
-  toast.success("Telefone copiado com sucesso!")
-}
+const PhoneItem = ({ phone }: PhoneItemProps) => {
+  const handleCopyPhoneClick = (phone: string) => {
+    navigator.clipboard.writeText(phone)
+    toast.success("Telefone copiado com sucesso!")
+  }
 
-export const PhoneItem = ({ phone }: PhoneItemProps) => {
   return (
-    <div key={phone} className="flex justify-between">
+    <div className="flex justify-between" key={phone}>
+      {/* ESQUERDA */}
       <div className="flex items-center gap-2">
         <SmartphoneIcon />
-        <p className="gap-2 text-sm">{phone}</p>
+        <p className="text-sm">{phone}</p>
       </div>
+      {/* DIREITA */}
       <Button
-        onClick={() => handleCopyPhoneClick(phone)}
         variant="outline"
         size="sm"
+        onClick={() => handleCopyPhoneClick(phone)}
       >
         Copiar
       </Button>
     </div>
   )
 }
+
+export default PhoneItem

@@ -1,13 +1,11 @@
-import { SearchIcon } from "lucide-react"
-import { Header } from "./_components/header"
+import Header from "./_components/header"
 import { Button } from "./_components/ui/button"
-import { Input } from "./_components/ui/input"
 import Image from "next/image"
-import { Card, CardContent } from "./_components/ui/card"
 import { db } from "./_lib/prisma"
-import { BabershopItem } from "./_components/babershop-item"
+import BarbershopItem from "./_components/barbershop-item"
 import { quickSearchOptions } from "./_constants/search"
-import { BookingItem } from "./_components/booking-item"
+import BookingItem from "./_components/booking-item"
+import Search from "./_components/search"
 
 const Home = async () => {
   const barbershops = await db.barbershop.findMany({})
@@ -16,23 +14,25 @@ const Home = async () => {
       name: "desc",
     },
   })
+
   return (
     <div>
+      {/* header */}
       <Header />
       <div className="p-5">
-        <h2 className="text-xl font-bold">Olá, Ruan!</h2>
+        {/* TEXTO */}
+        <h2 className="text-xl font-bold">Olá, Felipe!</h2>
         <p>Segunda-feira, 05 de agosto.</p>
 
-        <div className="mt-6 flex items-center gap-2">
-          <Input placeholder="Faça sua busca..." />
-          <Button>
-            <SearchIcon />
-          </Button>
+        {/* BUSCA */}
+        <div className="mt-6">
+          <Search />
         </div>
 
+        {/* BUSCA RÁPIDA */}
         <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
           {quickSearchOptions.map((option) => (
-            <Button key={option.title} className="gap-2" variant="secondary">
+            <Button className="gap-2" variant="secondary" key={option.title}>
               <Image
                 src={option.imageUrl}
                 width={16}
@@ -44,24 +44,25 @@ const Home = async () => {
           ))}
         </div>
 
+        {/* IMAGEM */}
         <div className="relative mt-6 h-[150px] w-full">
           <Image
-            className="rounded-xl"
-            src="/Banner pizza.png"
-            alt="banner-01"
+            alt="Agende nos melhores com FSW Barber"
+            src="/banner-01.png"
             fill
-            objectFit="cover"
+            className="rounded-xl object-cover"
           />
         </div>
 
+        {/* AGENDAMENTO */}
         <BookingItem />
 
         <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
           Recomendados
         </h2>
-        <div className="flex gap-4 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
           {barbershops.map((barbershop) => (
-            <BabershopItem key={barbershop.id} barbershop={barbershop} />
+            <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
 
@@ -70,7 +71,7 @@ const Home = async () => {
         </h2>
         <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
           {popularBarbershops.map((barbershop) => (
-            <BabershopItem key={barbershop.id} barbershop={barbershop} />
+            <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
       </div>

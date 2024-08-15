@@ -1,6 +1,6 @@
 import { Card, CardContent } from "./ui/card"
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <footer>
       <Card>
@@ -13,3 +13,5 @@ export const Footer = () => {
     </footer>
   )
 }
+
+export default Footer
