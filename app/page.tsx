@@ -34,10 +34,10 @@ const Home = async () => {
         <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
           {quickSearchOptions.map((option) => (
             <Button
-              asChild
               className="gap-2"
               variant="secondary"
               key={option.title}
+              asChild
             >
               <Link href={`/barbershops?services=${option.title}`}>
                 <Image
@@ -46,9 +46,8 @@ const Home = async () => {
                   height={16}
                   alt={option.title}
                 />
+                {option.title}
               </Link>
-
-              {option.title}
             </Button>
           ))}
         </div>
